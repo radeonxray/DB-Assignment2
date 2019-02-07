@@ -63,8 +63,15 @@ In the "Port" enter you docker container port, which by default in guide is set 
 That's it! You don't need to enter username or password, and if you've setup everything correctly, you should be connected to the mongoDB running in your container, when you hit the "Connect"-button in the Compass-program.
 
 
+### 3: ReactJS, NodeJS and NPM
+In order to run the Frontend (React) and Backend(Backend) of the project, you will need to install NodeJS, which will allow you to use the NPM command.
+I would suggest selecting and isntalling the LTS-version
+https://nodejs.org/en/
 
 
+### 4: Running the Backend and Frontend
+Development has been conducted using the Visual Studio Code-IDE, but the backend and frontend can also be launched though the Terminal/Bash, using th 
+Open the folder [Frontend]-folder and 
 
 
 # Development Notes
