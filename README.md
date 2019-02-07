@@ -32,6 +32,41 @@ Push your solution, source, code, and presentation of the results to a Github re
 
 # Setup
 
+## Introduction
+This project uses various tools, such as Docker, ReactJS and NodeJS.
+
+Because a "free" mlab account only supports up to 500mb-files, the project has to be run locally, rather than fethcing the MongoDB from the internet. This requires that the user setups a VM, Vagrant and Docker.
+
+The setup guide is divided up into different parts, so feel free to skip parts if you've already installed the mentioned enviroments and programs.
+
+### 1: Virtual Machine, Vagrant and Docker 
+
+If you need to setup Docker, please look here on how to first setup the Virtual Machine and Vagrant:
+Note: Please note the IP address you've selected for your Vagrant-setup, because you will need this later! Default its `192.168.33.10`
+https://datsoftlyngby.github.io/soft2019spring/introday/introday_workshop.html
+
+Following that, please see here how to install Docker on the VM and Vagrant:
+https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-16-04
+
+### 2: The Docker Container and MongoDB setup
+After Docker is up and running, see the "Hint" section of the assignemnt to see how to setup the Container, that will contain the mongoDB. Please note the port you are using for the container, following the guide will use `port:27017` by default.
+
+Run the following command to import the `training.1600000.processed.noemoticon.csv` into a mongoDB in the docker container
+
+`mongoimport -d TwitterDB --type CSV --file training.1600000.processed.noemoticon.csv --headerline`
+
+To check that the MongoDB is up and running, I would recommend using the "MongoDB Compass"-program, which is a GUI to visualize your mongoDB. Download here: https://www.mongodb.com/products/compass
+
+Open the Compass program and in the "New Connection" tab, enter your Vagrant IP address (that was mentioned earlier, if you didn't change the default IP from the setup file, it will most likely be `192.168.33.10`) in the "HostName Field". 
+In the "Port" enter you docker container port, which by default in guide is set to `27017`.
+
+That's it! You don't need to enter username or password, and if you've setup everything correctly, you should be connected to the mongoDB running in your container, when you hit the "Connect"-button in the Compass-program.
+
+
+
+
+
+
 # Development Notes
 
 Ceo Docker Mongo: `192.168.33.10:27017`
