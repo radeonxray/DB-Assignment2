@@ -39,7 +39,7 @@ When creating the docker container:
 `$ docker run --rm -v $(pwd)/data:/data/db --publish=27017:27017 --name dbms -d mongo
 88385afac5fe88a5ba47cd60c084bc1855cae6089a7e7d95ba24f0ba6fea1404`
 
-Please notice the --name [dbms] and use that to login/connect to the container, since the container id will be based on the long [88385afac5fe88a5ba47cd60c084bc1855cae6089a7e7d95ba24f0ba6fea1404]
+Please notice the --name [dbms] and use that to login/connect to the container, since the container id will be based on the long `88385afac5fe88a5ba47cd60c084bc1855cae6089a7e7d95ba24f0ba6fea1404`
 
 In the following command:
 `docker exec -it 88385afa bash`
