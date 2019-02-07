@@ -70,9 +70,30 @@ https://nodejs.org/en/
 
 
 ### 4: Running the Backend and Frontend
-Development has been conducted using the Visual Studio Code-IDE, but the backend and frontend can also be launched though the Terminal/Bash, using th 
-Open the folder [Frontend]-folder and 
+Development has been conducted using the Visual Studio Code-IDE, but the backend and frontend can also be launched through the Terminal/Bash.
 
+#### 4.1: Launch through Terminal/Bash
+
+- Locate and open the [Frontend]-folder and [Backend]-folder in the Terminal/Bash. 
+- Stay in the root of the folder
+- Run the following command in the root of each folder, to install missing modules and dependencies in respective program `npm install`
+- Run the following command in the root of each folder, to launch the respective program `npm start`
+- Please note:
+  - Backend: The backend is set to be hosted on `http://127.0.0.1:3001` or `http://localhost:3001/`
+  - FrontEnd: The Frontend is set to be hosted on `http://127.0.0.1:3000` or `http://localhost:3000/`
+
+#### 4.2: Launch through Visual Studio Code
+
+- Locate and open the [Frontend]-folder and [Backend]-folder in Visual Studio Code (or another compatible IDE). 
+- Run the following command in the terminal of the IDE to install missing modules and dependencies in respective program `npm install`
+- Run the following command in the terminal of the IDE to launch the respective program `npm start`
+- Please note:
+  - Backend
+    - Has been set to be hosted on `http://127.0.0.1:3001` or `http://localhost:3001/`
+    - Has been set to communicate with the MongoDB hosted by the Docker Container at `192.168.33.10:27017`, change the IP and port in the project if you've changed the default values from the setup.
+  - FrontEnd: 
+    - Has been set to be hosted on `http://127.0.0.1:3000` or `http://localhost:3000/`
+    - Has been set et to communicate with the backend at `http://localhost:3001/`
 
 # Development Notes
 
