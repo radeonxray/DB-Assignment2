@@ -122,7 +122,28 @@ The answers to the questions posed in the assignment can be found using the give
 - Who is are the most mentioned Twitter users? (Provide the top five.)
   - Path:
 - Who are the most active Twitter users (top ten)?
-  - Path:
+  - Path: http://localhost:3001/usercount
+  - Result
+    - lost_dog 
+      - Count : 549
+    - weboke
+      - Count : 345
+    - tweetpet
+      - Count : 310
+    - SallytheShizzle
+      - Count : 281
+    - VioletsCRUK
+      - Count : 279
+    - mcraddictal
+      - Count : 276
+    - tsarnick
+      - Count : 248
+    - what_bugs_u
+      - Count : 246
+    - Karen230683
+      - Count : 238
+    - DarkPiano
+      - Count : 236
 - Who are the five most grumpy (most negative tweets) and the most happy (most positive tweets)? (Provide five users for each group)
   - Path:
 
