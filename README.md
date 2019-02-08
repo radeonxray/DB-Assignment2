@@ -44,7 +44,8 @@ The setup guide is divided up into different parts, so feel free to skip parts i
 ### 1: Virtual Machine, Vagrant and Docker 
 
 If you need to setup Docker, please look here on [how to first setup the Virtual Machine and Vagrant](https://datsoftlyngby.github.io/soft2019spring/introday/introday_workshop.html)
-Note: Please note the IP address you've selected for your Vagrant-setup, because you will need this later! Default its `192.168.33.10`
+
+**Note**: Please note the `IP` address you've selected for your Vagrant-setup, because you will need this later! Default its `192.168.33.10`
 
 
 Following that, please see here [how to install Docker on the VM and Vagrant](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-16-04)
