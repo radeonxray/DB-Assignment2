@@ -115,9 +115,10 @@ The answers to the questions posed in the assignment can be found using the give
 **[Please note that the given Paths are given using the default values for the IP, PORT, Database and Collections]**.
 
 - How many Twitter users are in the database?
-  - Path:
+  - Path: http://localhost:3001/usercount
+  - Result: 659774 (out of 1600000 documents)
 - Which Twitter users link the most to other Twitter users? (Provide the top ten.)
-  - Path:
+  - Path: 
 - Who is are the most mentioned Twitter users? (Provide the top five.)
   - Path:
 - Who are the most active Twitter users (top ten)?
