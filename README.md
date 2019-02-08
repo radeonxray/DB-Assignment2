@@ -51,7 +51,7 @@ Following that, please see here how to install Docker on the VM and Vagrant:
 https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-16-04
 
 ### 2: The Docker Container and MongoDB setup
-After Docker is up and running, see the "Hint" section of the assignemnt to see how to setup the Container, that will contain the mongoDB. Please note the port you are using for the container, following the guide will use `port:27017` by default.
+After Docker is up and running, see the "Hint" section of the assignemnt (https://github.com/datsoftlyngby/soft2019spring-databases/blob/master/lecture_notes/02-Intro_to_MongoDB.ipynb) to see how to setup the Container, that will contain the mongoDB. Please note the port you are using for the container, following the guide will use `port:27017` by default.
 
 Run the following command to import the `training.1600000.processed.noemoticon.csv` into a mongoDB in the docker container
 
