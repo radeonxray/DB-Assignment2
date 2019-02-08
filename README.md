@@ -33,11 +33,13 @@ Push your solution, source, code, and presentation of the results to a Github re
 # Setup
 
 ## Introduction
-This project uses various tools, such as Docker, ReactJS and NodeJS.
+This project uses various tools, such as Docker, Express and NodeJS.
 
-Because a "free" mlab account only supports up to 500mb-files, the project has to be run locally, rather than fethcing the MongoDB from the internet. This requires that the user setups a VM, Vagrant and Docker.
+Because a "free" mlab account only supports up to 500mb-files, the project has to be run locally, rather than fetching the MongoDB from the internet. This requires that the user setups a VM, Vagrant and Docker.
 
 The setup guide is divided up into different parts, so feel free to skip parts if you've already installed the mentioned enviroments and programs.
+
+**Please Note**: The Project has been build using the default values provided by the various guides, so if you have changed any values from the guide, like the `<IP>` to make your host machine connect and communicate with Docker, the `Port` number for Docker Container etc., please be sure to change the project files accordingly, so you can run the project without any errors.
 
 ### 1: Virtual Machine, Vagrant and Docker 
 
@@ -91,6 +93,25 @@ Development has been conducted using the Visual Studio Code-IDE, but the project
   - The Project is set to be hosted on `http://127.0.0.1:3001` or `http://localhost:3001/`, this can be manually adjusted if needed in the `server.js-file`
   - Has been set to be hosted on `http://127.0.0.1:3001` or `http://localhost:3001/`
   - The project has been set to communicate with the MongoDB hosted by the Docker Container at `192.168.33.10:27017`, change the IP and port in the project's `server.js`-file, if you've changed the default values from the setup.
+
+### 5: Results
+
+With the `twitterdb`-project running, you can see the results by using a browser (*Chrome, Firefox, Internet Explore etc.*) or tools such as *Postman* (https://www.getpostman.com).
+
+The answers to the questions posed in the assignment can be found using the given api-path
+
+**[Please note that the given Paths are given using the default values for the IP, PORT, Database and Collections]**.
+
+- How many Twitter users are in the database?
+  - Path:
+- Which Twitter users link the most to other Twitter users? (Provide the top ten.)
+  - Path:
+- Who is are the most mentioned Twitter users? (Provide the top five.)
+  - Path:
+- Who are the most active Twitter users (top ten)?
+  - Path:
+- Who are the five most grumpy (most negative tweets) and the most happy (most positive tweets)? (Provide five users for each group)
+  - Path:
 
 
 # Development Notes
