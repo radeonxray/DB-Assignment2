@@ -63,37 +63,35 @@ In the "Port" enter you docker container port, which by default in guide is set 
 That's it! You don't need to enter username or password, and if you've setup everything correctly, you should be connected to the mongoDB running in your container, when you hit the "Connect"-button in the Compass-program.
 
 
-### 3: ReactJS, NodeJS and NPM
-In order to run the Frontend (React) and Backend(Backend) of the project, you will need to install NodeJS, which will allow you to use the NPM command.
-I would suggest selecting and isntalling the LTS-version
+### 3: Express, NodeJS and NPM
+In order to run the project, which has been build using NodeJS and Express, you will need to install NodeJS, which will allow you to use the NPM command.
+I would suggest selecting and installing the LTS-version
 https://nodejs.org/en/
 
 
-### 4: Running the Backend and Frontend
-Development has been conducted using the Visual Studio Code-IDE, but the backend and frontend can also be launched through the Terminal/Bash.
+### 4: Running the Express-Project
+Development has been conducted using the Visual Studio Code-IDE, but the project can also be launched through the Terminal/Bash.
 
 #### 4.1: Launch through Terminal/Bash
 
-- Locate and open the [Frontend]-folder and [Backend]-folder in the Terminal/Bash. 
+- Locate and open the `twitterdb-folder` in the Terminal/Bash. 
 - Stay in the root of the folder
-- Run the following command in the root of each folder, to install missing modules and dependencies in respective program `npm install`
-- Run the following command in the root of each folder, to launch the respective program `npm start`
+- Run the following command in the root of the folder, to install missing modules and dependencies in the twitterdb-project `npm install`
+- Run the following command in the root of the folder, to launch the twitterdb-project `npm start`
 - Please note:
-  - Backend: The backend is set to be hosted on `http://127.0.0.1:3001` or `http://localhost:3001/`
-  - FrontEnd: The Frontend is set to be hosted on `http://127.0.0.1:3000` or `http://localhost:3000/`
+  - The Project is set to be hosted on `http://127.0.0.1:3001` or `http://localhost:3001/`, this can be manually adjusted if needed in the `server.js-file`
+ 
 
 #### 4.2: Launch through Visual Studio Code
 
-- Locate and open the [Frontend]-folder and [Backend]-folder in Visual Studio Code (or another compatible IDE). 
-- Run the following command in the terminal of the IDE to install missing modules and dependencies in respective program `npm install`
-- Run the following command in the terminal of the IDE to launch the respective program `npm start`
+- Locate and open the `twitterdb-folder` in Visual Studio Code (or another compatible IDE). 
+- Run the following command in the terminal of the IDE to install missing modules and dependencies in the twitterdb-project `npm install`
+- Run the following command in the terminal of the IDE to launch the twitterdb-project `npm start`
 - Please note:
-  - Backend
-    - Has been set to be hosted on `http://127.0.0.1:3001` or `http://localhost:3001/`
-    - Has been set to communicate with the MongoDB hosted by the Docker Container at `192.168.33.10:27017`, change the IP and port in the project if you've changed the default values from the setup.
-  - FrontEnd: 
-    - Has been set to be hosted on `http://127.0.0.1:3000` or `http://localhost:3000/`
-    - Has been set et to communicate with the backend at `http://localhost:3001/`
+  - The Project is set to be hosted on `http://127.0.0.1:3001` or `http://localhost:3001/`, this can be manually adjusted if needed in the `server.js-file`
+  - Has been set to be hosted on `http://127.0.0.1:3001` or `http://localhost:3001/`
+  - The project has been set to communicate with the MongoDB hosted by the Docker Container at `192.168.33.10:27017`, change the IP and port in the project's `server.js`-file, if you've changed the default values from the setup.
+
 
 # Development Notes
 
