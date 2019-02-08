@@ -76,19 +76,19 @@ Development has been conducted using the Visual Studio Code-IDE, but the project
 
 #### 4.1: Launch through Terminal/Bash
 
-- Locate and open the `twitterdb-folder` in the Terminal/Bash. 
+- Locate and open the `DB-Assignment2-folder` in the Terminal/Bash. 
 - Stay in the root of the folder
-- Run the following command in the root of the folder, to install missing modules and dependencies in the twitterdb-project `npm install`
-- Run the following command in the root of the folder, to launch the twitterdb-project `npm start`
+- Run the following command in the root of the folder, to install missing modules and dependencies in the DB-Assignment2-project `npm install`
+- Run the following command in the root of the folder, to launch the DB-Assignment2-project `npm start`
 - Please note:
   - The Project is set to be hosted on `http://127.0.0.1:3001` or `http://localhost:3001/`, this can be manually adjusted if needed in the `server.js-file`
  
 
 #### 4.2: Launch through Visual Studio Code
 
-- Locate and open the `twitterdb-folder` in Visual Studio Code (or another compatible IDE). 
-- Run the following command in the terminal of the IDE to install missing modules and dependencies in the twitterdb-project `npm install`
-- Run the following command in the terminal of the IDE to launch the twitterdb-project `npm start`
+- Locate and open the `DB-Assignment2-folder` in Visual Studio Code (or another compatible IDE). 
+- Run the following command in the terminal of the IDE to install missing modules and dependencies in the DB-Assignment2-project `npm install`
+- Run the following command in the terminal of the IDE to launch the DB-Assignment2-project `npm start`
 - Please note:
   - The Project is set to be hosted on `http://127.0.0.1:3001` or `http://localhost:3001/`, this can be manually adjusted if needed in the `server.js-file`
   - Has been set to be hosted on `http://127.0.0.1:3001` or `http://localhost:3001/`
@@ -96,7 +96,7 @@ Development has been conducted using the Visual Studio Code-IDE, but the project
 
 ### 5: Results
 
-With the `twitterdb`-project running, you can see the results by using a browser (*Chrome, Firefox, Internet Explore etc.*) or tools such as *Postman* (https://www.getpostman.com).
+With the `DB-Assignment2`-project running, you can see the results by using a browser (*Chrome, Firefox, Internet Explore etc.*) or tools such as *Postman* (https://www.getpostman.com).
 
 The answers to the questions posed in the assignment can be found using the given api-path
 
