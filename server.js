@@ -23,7 +23,7 @@ var app = express();
 //Module to handle and parse JSON/text elements  
 var bodyParser= require('body-parser')
 
-//Applying to Body-parser to the server
+//Applying the Body-parser to the server
 app.use(bodyParser.urlencoded({extended: true}));
 
 //Create the Server
@@ -51,8 +51,9 @@ monDB = mongoose.connect(mongoDBurl, {useNewUrlParser:true});
 */
 
 //API to count the amount of users in the DB
+//Q: How many Twitter users are in the database?
 //Note that using the Distinc-eliminates duplicates! The result is therefore X out of 1600000 documents
-app.get('/userCount',function(req,res){
+app.get('/usercount',function(req,res){
 post.distinct('user').exec(function(err,users){
   if(err){
     res.status(500).send("Error!")
@@ -63,6 +64,21 @@ post.distinct('user').exec(function(err,users){
 }
 )
 })
+
+//API Twitters users link
+app.get('/mostlinks', function(req,res){
+
+  post.find({user: "_TheSpecialOne_"}, function(err,user){
+    if(err){
+      res.status(500).send("Error!")
+    } else {
+      console.log("wha")
+      res.status(200).send(user);
+    }
+  })
+  
+  })
+
 
 app.get('/api/test', (req,res) => {
 console.log("Running");
