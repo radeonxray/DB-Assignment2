@@ -31,7 +31,7 @@ Push your solution, source, code, and presentation of the results to a Github re
 - Hand-in at latest on 10. Feb. 16:00.
 
 # Setup
-
+![WizardSetup](./pictures/wizard.jpg)
 ## Introduction
 This project uses various tools, such as Docker, Express and NodeJS.
 
