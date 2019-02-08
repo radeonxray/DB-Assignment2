@@ -43,21 +43,33 @@ The setup guide is divided up into different parts, so feel free to skip parts i
 
 ### 1: Virtual Machine, Vagrant and Docker 
 
-If you need to setup Docker, please look here on how to first setup the Virtual Machine and Vagrant:
-Note: Please note the IP address you've selected for your Vagrant-setup, because you will need this later! Default its `192.168.33.10`
-https://datsoftlyngby.github.io/soft2019spring/introday/introday_workshop.html
+If you need to setup Docker, please look here on [how to first setup the Virtual Machine and Vagrant](https://datsoftlyngby.github.io/soft2019spring/introday/introday_workshop.html)
 
-Following that, please see here how to install Docker on the VM and Vagrant:
-https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-16-04
+**Note**: Please note the `IP` address you've selected for your Vagrant-setup, because you will need this later! Default its `192.168.33.10`
+
+
+Following that, please see here [how to install Docker on the VM and Vagrant](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-16-04)
+
 
 ### 2: The Docker Container and MongoDB setup
-After Docker is up and running, see the "Hint" section of the assignemnt to see how to setup the Container, that will contain the mongoDB. Please note the port you are using for the container, following the guide will use `port:27017` by default.
+After Docker is up and running, see the "Hint" section of the [assignemnt](https://github.com/datsoftlyngby/soft2019spring-databases/blob/master/lecture_notes/02-Intro_to_MongoDB.ipynb) to see how to setup the Container, that will contain the mongoDB. Please note the port you are using for the container, following the guide will use `port:27017` by default.
 
-Run the following command to import the `training.1600000.processed.noemoticon.csv` into a mongoDB in the docker container
+**Warning**: Before importing the unzipped-db into Mongo, remember to have run the following command on the DB-file, so that our Express-server can read our DB correctly:
 
-`mongoimport -d TwitterDB --type CSV --file training.1600000.processed.noemoticon.csv --headerline`
+**Important command**: `sed -i '1s;^;polarity,id,date,query,user,text\n;' training.1600000.processed.noemoticon.csv`
 
-To check that the MongoDB is up and running, I would recommend using the "MongoDB Compass"-program, which is a GUI to visualize your mongoDB. Download here: https://www.mongodb.com/products/compass
+Afer having run the above command to prepare teh db-file, run the following command to import the `training.1600000.processed.noemoticon.csv` into a mongoDB in the docker container.
+
+**Import DB to MongoDB-command:** `mongoimport -d TwitterDB --type CSV --file training.1600000.processed.noemoticon.csv --headerline`
+
+**Check if DB was correct**: To check if the "correct and edited"  db got imported, if the bash/terminal states that `imported 1600000 documents` after having run the import-command, then you'll know that its ok. 
+
+If it however states `imported 1599999 documents`, the `sed -i '1s;^;polarity,id,date,query,user,text\n;' training.1600000.processed.noemoticon.csv` has not been applied correctly!
+
+This can also later be checked by using tools such as  [MongoDB Compass](https://www.mongodb.com/products/compass), that can tell and show you how many documents a collection contains.
+
+
+To check that the MongoDB is up and running, I would recommend using the [MongoDB Compass](https://www.mongodb.com/products/compass)-program, which is a GUI to visualize your mongoDB.
 
 Open the Compass program and in the "New Connection" tab, enter your Vagrant IP address (that was mentioned earlier, if you didn't change the default IP from the setup file, it will most likely be `192.168.33.10`) in the "HostName Field". 
 In the "Port" enter you docker container port, which by default in guide is set to `27017`.
@@ -66,7 +78,7 @@ That's it! You don't need to enter username or password, and if you've setup eve
 
 
 ### 3: Express, NodeJS and NPM
-In order to run the project, which has been build using NodeJS and Express, you will need to install NodeJS, which will allow you to use the NPM command.
+In order to run the project, which has been build using NodeJS and Express, you will need to install [NodeJS](https://nodejs.org/en/), which will allow you to use the NPM command.
 I would suggest selecting and installing the LTS-version
 https://nodejs.org/en/
 
@@ -76,19 +88,19 @@ Development has been conducted using the Visual Studio Code-IDE, but the project
 
 #### 4.1: Launch through Terminal/Bash
 
-- Locate and open the `twitterdb-folder` in the Terminal/Bash. 
+- Locate and open the `DB-Assignment2-folder` in the Terminal/Bash. 
 - Stay in the root of the folder
-- Run the following command in the root of the folder, to install missing modules and dependencies in the twitterdb-project `npm install`
-- Run the following command in the root of the folder, to launch the twitterdb-project `npm start`
+- Run the following command in the root of the folder, to install missing modules and dependencies in the DB-Assignment2-project `npm install`
+- Run the following command in the root of the folder, to launch the DB-Assignment2-project `npm start`
 - Please note:
   - The Project is set to be hosted on `http://127.0.0.1:3001` or `http://localhost:3001/`, this can be manually adjusted if needed in the `server.js-file`
  
 
 #### 4.2: Launch through Visual Studio Code
 
-- Locate and open the `twitterdb-folder` in Visual Studio Code (or another compatible IDE). 
-- Run the following command in the terminal of the IDE to install missing modules and dependencies in the twitterdb-project `npm install`
-- Run the following command in the terminal of the IDE to launch the twitterdb-project `npm start`
+- Locate and open the `DB-Assignment2-folder` in Visual Studio Code (or another compatible IDE). 
+- Run the following command in the terminal of the IDE to install missing modules and dependencies in the DB-Assignment2-project `npm install`
+- Run the following command in the terminal of the IDE to launch the DB-Assignment2-project `npm start`
 - Please note:
   - The Project is set to be hosted on `http://127.0.0.1:3001` or `http://localhost:3001/`, this can be manually adjusted if needed in the `server.js-file`
   - Has been set to be hosted on `http://127.0.0.1:3001` or `http://localhost:3001/`
@@ -96,16 +108,17 @@ Development has been conducted using the Visual Studio Code-IDE, but the project
 
 ### 5: Results
 
-With the `twitterdb`-project running, you can see the results by using a browser (*Chrome, Firefox, Internet Explore etc.*) or tools such as *Postman* (https://www.getpostman.com).
+With the `DB-Assignment2`-project running, you can see the results by using a browser (*Chrome, Firefox, Internet Explore etc.*) or tools such as [*Postman*](https://www.getpostman.com).
 
 The answers to the questions posed in the assignment can be found using the given api-path
 
 **[Please note that the given Paths are given using the default values for the IP, PORT, Database and Collections]**.
 
 - How many Twitter users are in the database?
-  - Path:
+  - Path: http://localhost:3001/usercount
+  - Result: 659774 (out of 1600000 documents)
 - Which Twitter users link the most to other Twitter users? (Provide the top ten.)
-  - Path:
+  - Path: 
 - Who is are the most mentioned Twitter users? (Provide the top five.)
   - Path:
 - Who are the most active Twitter users (top ten)?
