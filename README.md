@@ -122,7 +122,7 @@ The answers to the questions posed in the assignment can be found using the give
 - Who is are the most mentioned Twitter users? (Provide the top five.)
   - Path:
 - Who are the most active Twitter users (top ten)?
-  - Path: http://localhost:3001/usercount
+  - Path: http://localhost:3001/mostactive
   - Result
     - lost_dog 
       - Count : 549
