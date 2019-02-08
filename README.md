@@ -43,21 +43,21 @@ The setup guide is divided up into different parts, so feel free to skip parts i
 
 ### 1: Virtual Machine, Vagrant and Docker 
 
-If you need to setup Docker, please look here on how to first setup the Virtual Machine and Vagrant:
+If you need to setup Docker, please look here on [how to first setup the Virtual Machine and Vagrant](https://datsoftlyngby.github.io/soft2019spring/introday/introday_workshop.html)
 Note: Please note the IP address you've selected for your Vagrant-setup, because you will need this later! Default its `192.168.33.10`
-https://datsoftlyngby.github.io/soft2019spring/introday/introday_workshop.html
 
-Following that, please see here how to install Docker on the VM and Vagrant:
-https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-16-04
+
+Following that, please see here [how to install Docker on the VM and Vagrant](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-16-04)
+
 
 ### 2: The Docker Container and MongoDB setup
-After Docker is up and running, see the "Hint" section of the assignemnt (https://github.com/datsoftlyngby/soft2019spring-databases/blob/master/lecture_notes/02-Intro_to_MongoDB.ipynb) to see how to setup the Container, that will contain the mongoDB. Please note the port you are using for the container, following the guide will use `port:27017` by default.
+After Docker is up and running, see the "Hint" section of the [assignemnt](https://github.com/datsoftlyngby/soft2019spring-databases/blob/master/lecture_notes/02-Intro_to_MongoDB.ipynb) to see how to setup the Container, that will contain the mongoDB. Please note the port you are using for the container, following the guide will use `port:27017` by default.
 
 Run the following command to import the `training.1600000.processed.noemoticon.csv` into a mongoDB in the docker container
 
 `mongoimport -d TwitterDB --type CSV --file training.1600000.processed.noemoticon.csv --headerline`
 
-To check that the MongoDB is up and running, I would recommend using the "MongoDB Compass"-program, which is a GUI to visualize your mongoDB. Download here: https://www.mongodb.com/products/compass
+To check that the MongoDB is up and running, I would recommend using the [MongoDB Compass](https://www.mongodb.com/products/compass)-program, which is a GUI to visualize your mongoDB.
 
 Open the Compass program and in the "New Connection" tab, enter your Vagrant IP address (that was mentioned earlier, if you didn't change the default IP from the setup file, it will most likely be `192.168.33.10`) in the "HostName Field". 
 In the "Port" enter you docker container port, which by default in guide is set to `27017`.
@@ -66,7 +66,7 @@ That's it! You don't need to enter username or password, and if you've setup eve
 
 
 ### 3: Express, NodeJS and NPM
-In order to run the project, which has been build using NodeJS and Express, you will need to install NodeJS, which will allow you to use the NPM command.
+In order to run the project, which has been build using NodeJS and Express, you will need to install [NodeJS](https://nodejs.org/en/), which will allow you to use the NPM command.
 I would suggest selecting and installing the LTS-version
 https://nodejs.org/en/
 
@@ -96,7 +96,7 @@ Development has been conducted using the Visual Studio Code-IDE, but the project
 
 ### 5: Results
 
-With the `DB-Assignment2`-project running, you can see the results by using a browser (*Chrome, Firefox, Internet Explore etc.*) or tools such as *Postman* (https://www.getpostman.com).
+With the `DB-Assignment2`-project running, you can see the results by using a browser (*Chrome, Firefox, Internet Explore etc.*) or tools such as [*Postman*](https://www.getpostman.com).
 
 The answers to the questions posed in the assignment can be found using the given api-path
 
