@@ -54,9 +54,20 @@ Following that, please see here [how to install Docker on the VM and Vagrant](ht
 ### 2: The Docker Container and MongoDB setup
 After Docker is up and running, see the "Hint" section of the [assignemnt](https://github.com/datsoftlyngby/soft2019spring-databases/blob/master/lecture_notes/02-Intro_to_MongoDB.ipynb) to see how to setup the Container, that will contain the mongoDB. Please note the port you are using for the container, following the guide will use `port:27017` by default.
 
-Run the following command to import the `training.1600000.processed.noemoticon.csv` into a mongoDB in the docker container
+**Warning**: Before importing the unzipped-db into Mongo, remember to have run the following command on the DB-file, so that our Express-server can read our DB correctly:
 
-`mongoimport -d TwitterDB --type CSV --file training.1600000.processed.noemoticon.csv --headerline`
+**Important command**: `sed -i '1s;^;polarity,id,date,query,user,text\n;' training.1600000.processed.noemoticon.csv`
+
+Afer having run the above command to prepare teh db-file, run the following command to import the `training.1600000.processed.noemoticon.csv` into a mongoDB in the docker container.
+
+**Import DB to MongoDB-command:** `mongoimport -d TwitterDB --type CSV --file training.1600000.processed.noemoticon.csv --headerline`
+
+**Check if DB was correct**: To check if the "correct and edited"  db got imported, if the bash/terminal states that `imported 1600000 documents` after having run the import-command, then you'll know that its ok. 
+
+If it however states `imported 1599999 documents`, the `sed -i '1s;^;polarity,id,date,query,user,text\n;' training.1600000.processed.noemoticon.csv` has not been applied correctly!
+
+This can also later be checked by using tools such as  [MongoDB Compass](https://www.mongodb.com/products/compass), that can tell and show you how many documents a collection contains.
+
 
 To check that the MongoDB is up and running, I would recommend using the [MongoDB Compass](https://www.mongodb.com/products/compass)-program, which is a GUI to visualize your mongoDB.
 
