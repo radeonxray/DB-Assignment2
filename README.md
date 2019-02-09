@@ -119,12 +119,34 @@ The answers to the questions posed in the assignment can be found using the give
   - Path: http://localhost:3001/usercount
   - Result: 659774 (out of 1600000 documents)
 - Which Twitter users link the most to other Twitter users? (Provide the top ten.)
-  - Path: 
+  - Path: http://localhost:3001/mostmentioned
+  - Results:
+    - lost_dog 
+      - Mentions : 549
+    - tweetpet
+      - Mentions : 310
+    - VioletsCRUK
+      - Mentions : 251
+    - what_bugs_u
+      - Mentions : 246
+    - tsarnick
+      - Mentions : 245
+    - SallytheShizzle
+      - Mentions : 229
+    - mcraddictal
+      - Mentions : 217
+    - Karen230683
+      - Mentions : 216
+    - keza34
+      - Mentions : 211
+    - TraceyHewins
+      - Mentions : 202
+  
 - Who is are the most mentioned Twitter users? (Provide the top five.)
   - Path:
 - Who are the most active Twitter users (top ten)?
   - Path: http://localhost:3001/mostactive
-  - Result
+  - Results: 
     - lost_dog 
       - Count : 549
     - weboke
