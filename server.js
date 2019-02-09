@@ -66,9 +66,17 @@ post.distinct('user').exec(function(err,users){
 })
 
 //API Twitters users link
+//Find the top 10 users with most links
+//The Users "mention" each other in the "text"-element, by @[username]
+//Need to find the top 10 users, who has the most @[username]
+//Need to use $regex?
+//Need to use $regex to search for @[username] and end at first "space", count the mentions and return the top 10
+//Added a new field to keep track of mentions!
 app.get('/mostlinks', function(req,res){
 
-  post.find({user: "_TheSpecialOne_"}, function(err,user){
+  post.aggregate([
+  {'$match':{'text':{'$regex':/@\w+/}}}, {'$addFields': {"mentions":1}},{'$group':{"_id":"$user", "mentions":{'$sum':1}}}, {'$sort':{"mentions":-1}}, ]).
+  limit(10).allowDiskUse(true).exec(function(err,user){
     if(err){
       res.status(500).send("Error!")
     } else {
@@ -76,7 +84,44 @@ app.get('/mostlinks', function(req,res){
       res.status(200).send(user);
     }
   })
-  
+
+  })
+
+
+//API for showing the top 10 most mentioned Twitter users
+app.get('/mostmentioned', function(req,res){
+
+  post.aggregate([{'$group':{_id:text}}]).allowDiskUse(true).limit(10).exec(function(err, user){
+    if(err){
+      console.log(err)
+      res.status(500).send("Error!")
+    } else {
+      res.status(200).send(user);
+    }
+  })
+
+})
+
+  //API to count the Top 10 Most Active users
+  //The query is based on counting the "user"-field of all the users, sort it from high to low and limit the result to the top 10.
+  //Query seems to fail, if I try to replace the "_id" with something more fitting, like "name" or "username", err message states that: The field \'_username\' must be an accumulator object.
+  //WARNING: Can (potentially) be slow! Putting the "limit(10)" REALLY helped the speed/response!
+  //WARNING WARNING! Don't remove the "limit(10)"! Unless you REALLY want to see the result for ALL users, in which case: Start the function, brew some cofee, and come back (:
+  //NOTE: "allowDiskUse(true)" was originally set when I tested for ALL users, since the query needed to use more memory than was available (Think default allowed is 100mb).
+  app.get('/mostactive', function(req,res){
+   
+  post.aggregate([{'$group':{
+    _id:"$user",count:{$sum:1}}},
+    {$sort:{count:-1}}
+  ]).allowDiskUse(true).limit(10).exec(function(err, user){
+    if(err){
+      console.log(err)
+      res.status(500).send("Error!")
+    } else {
+      res.status(200).send(user);
+    }
+  })
+
   })
 
 
@@ -94,47 +139,108 @@ post.find({user: "_TheSpecialOne_"}, function(err,user){
 
 })
 
-//Polarity - Higest 5 (bad or good?)
-app.get('/api/pol', (req,res) => {
-  console.log("Running");
-  var mySort = {polarity: -1};
+//TEST API!
+//Just wanted to see if any user had any text in the field "query" other than "NO_QUERY"
+//Spoiler: None!
+app.get('/testQuery', function(req,res){
 
-  post.find().sort(mySort).limit(5).exec( function(err,user){
+  post.aggregate([{'$group':
+  {_id:{query:"$query"}, count:{$sum:1}}},
+  {$sort:{"_id.source":-1}}]).allowDiskUse(true).limit(10).exec(function(err, user){
     if(err){
+      console.log(err)
       res.status(500).send("Error!")
     } else {
       res.status(200).send(user);
     }
   })
+
+})
+
+//API Polarity
+//Show the five users with the most Grumpy tweets and the five users with the most positive tweets
+app.get('/polarity', (req,res) => {
+  pipeline = [ ]
+
+post.aggregate(pipeline).allowDiskUse(true).limit(10).exec(function(err, user){
+  if(err){
+    console.log(err)
+    res.status(500).send("Error!")
+  } else {
+    res.status(200).send(user);
+  }
+}) 
+  /*
+  post.aggregate([{$group:{
+    _id:{
+      username:"$user",count:{$sum:1}}
+    }}
+  ,{$sort:{count:-1}}]).allowDiskUse(true).limit(10).exec(function(err, user){
+    if(err){
+      console.log(err)
+      res.status(500).send("Error!")
+    } else {
+      res.status(200).send(user);
+    }
+  }) 
+  */
+/*
+  post.aggregate([{$group:{_id:"$user",
+  polarity:
+  {$sum: {
+    $add:[
+      {"$ifNull":["$polarity",8]}]}}}},{$sort:{count:-1}}]).allowDiskUse(true).limit(10).exec(function(err, user){
+    if(err){
+      console.log(err)
+      res.status(500).send("Error!")
+    } else {
+      res.status(200).send(user);
+    }
+  })
+  */
+
+  /*
+  post.aggregate([{$project: {
+    polarityTotal: {$sum: "$polarity"}
+  }}, {$sort:{count:-1}}]).allowDiskUse(true).limit(10).exec(function(err, user){
+    if(err){
+      console.log(err)
+      res.status(500).send("Error!")
+    } else {
+      res.status(200).send(user);
+    }
+  })
+  */
+
   
   })
 
+  //TEST POLARITY WITH AGGREGATE
+  //Testing to see the range of the field "polarity"
+  //Results: 
+  // 0 : 800000 (one is prob. from the top field)
+  // 4 : 800000
+  //From the results one must conclude, that some users might have multiple tweets with a polarity score.
+  // From Standford : the polarity of the tweet (0 = negative, 2 = neutral, 4 = positive)
+  app.get('/polAgg', (req,res) => { 
 
-  app.get('/api/nq', (req, res) => {
-    console.log("nq")
-    post.where("query").ne("NO_QUERY").exec(function(err,user){
+    post.aggregate([{'$group':{_id:"$polarity",count:{$sum:1}}},{$sort:{count:-1}}]).exec( function(err,user){
       if(err){
         res.status(500).send("Error!")
       } else {
         res.status(200).send(user);
       }
     })
-  })
+    
+    })
+
+
 
 
 app.get('/api', function (req,res){
   res.send("Here we go!");
 })
 
-
-/*
-post.aggregate([{
-  $group:{
-    _id:"$user",
-    total:{$sum:1}
-  }
-}]).pipeline().values()
-*/
 
 
 
