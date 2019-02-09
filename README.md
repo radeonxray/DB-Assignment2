@@ -14,6 +14,7 @@ Your application has to be able to answer queries corresponding to the following
 - Who is are the most mentioned Twitter users? (Provide the top five.)
 - Who are the most active Twitter users (top ten)?
 - Who are the five most grumpy (most negative tweets) and the most happy (most positive tweets)? (Provide five users for each group)
+  - From http://help.sentiment140.com/for-students/: "the polarity of the tweet (0 = negative, 2 = neutral, 4 = positive)"
 
 Your application can be written in the language of your choice. It must have a form of UI but it is not important if it is an API, a CLI UI, a GUI, or a Web-based UI.
 
