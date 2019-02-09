@@ -119,7 +119,7 @@ The answers to the questions posed in the assignment can be found using the give
   - Path: http://localhost:3001/usercount
   - Result: 659774 (out of 1600000 documents)
 - Which Twitter users link the most to other Twitter users? (Provide the top ten.)
-  - Path: http://localhost:3001/mostmentioned
+  - Path: http://localhost:3001/mostlinks
   - Results:
     - lost_dog 
       - Mentions : 549
