@@ -36,19 +36,6 @@ const server = http.createServer((req, res) => {
 // Connect the server to the db
 monDB = mongoose.connect(mongoDBurl, {useNewUrlParser:true});
 
-//Function to check if we can see the collection of training.1600000.processed.noemoticon
-//In the TwitterDB
-/*monDB.on('open', function () {
-  monDB.db.listCollections().toArray(function (err, collectionNames) {
-    if (err) {
-      console.log(err);
-      return;
-    }
-      console.log(collectionNames);
-      monDB.close();
-  });
-});
-*/
 
 //API to count the amount of users in the DB
 //Q: How many Twitter users are in the database?
@@ -90,7 +77,6 @@ app.get('/mostlinks', function(req,res){
 
 //API for showing the top 10 most mentioned Twitter users
 //Need to locate and save the usernames 
-
 app.get('/mostmentioned', function(req,res){
 
   post.aggregate([
@@ -132,40 +118,11 @@ app.get('/mostmentioned', function(req,res){
   })
 
 
-app.get('/api/test', (req,res) => {
-console.log("Running");
 
-post.find({user: "_TheSpecialOne_"}, function(err,user){
-  if(err){
-    res.status(500).send("Error!")
-  } else {
-    console.log("wha")
-    res.status(200).send(user);
-  }
-})
 
-})
 
-//TEST API!
-//Just wanted to see if any user had any text in the field "query" other than "NO_QUERY"
-//Spoiler: None!
-app.get('/testQuery', function(req,res){
-
-  post.aggregate([{'$group':
-  {_id:{query:"$query"}, count:{$sum:1}}},
-  {$sort:{"_id.source":-1}}]).allowDiskUse(true).limit(10).exec(function(err, user){
-    if(err){
-      console.log(err)
-      res.status(500).send("Error!")
-    } else {
-      res.status(200).send(user);
-    }
-  })
-
-})
-
-//API Polarity
-//Show the five users with the most Grumpy tweets and the five users with the most positive tweets
+//API NEGATIVE-Polarity
+//Show the five users with the most Negative tweets and the five users with the most positive tweets
 app.get('/negativepolarity', (req,res) => {
 
   post.aggregate([
@@ -180,7 +137,7 @@ app.get('/negativepolarity', (req,res) => {
 })
 })
 
-//API Polarity
+//API POSITIVE-Polarity
 //Show the five users with the most Positive tweets and the five users with the most positive tweets
 app.get('/positivepolarity', (req,res) => {
 
@@ -196,6 +153,12 @@ app.get('/positivepolarity', (req,res) => {
 })
 })
 
+
+app.listen(port, hostname, () => {
+  console.log(`Server running at http://${hostname}:${port}/`)
+})
+
+/* --- !  TEST AREA ! ---  */ 
 
   //TEST POLARITY WITH AGGREGATE
   //Testing to see the range of the field "polarity"
@@ -217,15 +180,55 @@ app.get('/positivepolarity', (req,res) => {
     })
 
 
+//TEST API!
+//Just wanted to see if any user had any text in the field "query" other than "NO_QUERY"
+//Spoiler: None!
+app.get('/testQuery', function(req,res){
 
+  post.aggregate([{'$group':
+  {_id:{query:"$query"}, count:{$sum:1}}},
+  {$sort:{"_id.source":-1}}]).allowDiskUse(true).limit(10).exec(function(err, user){
+    if(err){
+      console.log(err)
+      res.status(500).send("Error!")
+    } else {
+      res.status(200).send(user);
+    }
+  })
+
+})
+
+app.get('/api/test', (req,res) => {
+  console.log("Running");
+  
+  post.find({user: "_TheSpecialOne_"}, function(err,user){
+    if(err){
+      res.status(500).send("Error!")
+    } else {
+      console.log("wha")
+      res.status(200).send(user);
+    }
+  })
+  
+  })
 
 app.get('/api', function (req,res){
   res.send("Here we go!");
 })
 
+//Function to check if we can see the collection of training.1600000.processed.noemoticon
+//In the TwitterDB
+/*monDB.on('open', function () {
+  monDB.db.listCollections().toArray(function (err, collectionNames) {
+    if (err) {
+      console.log(err);
+      return;
+    }
+      console.log(collectionNames);
+      monDB.close();
+  });
+});
+*/
 
 
 
-app.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`)
-})
