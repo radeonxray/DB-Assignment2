@@ -118,6 +118,7 @@ The answers to the questions posed in the assignment can be found using the give
 - How many Twitter users are in the database?
   - Path: http://localhost:3001/usercount
   - Result: 659774 (out of 1600000 documents)
+  
 - Which Twitter users link the most to other Twitter users? (Provide the top ten.)
   - Path: http://localhost:3001/mostlinks
   - Results:
@@ -142,8 +143,18 @@ The answers to the questions posed in the assignment can be found using the give
     - TraceyHewins
       - Mentions : 202
   
-- Who is are the most mentioned Twitter users? (Provide the top five.) **[Did not complete this part]**
-  - Path:http://localhost:3001/mostactive
+- Who is are the most mentioned Twitter users? (Provide the top five.) 
+  - Path:http://localhost:3001/mostmentioned
+      - @mileycyrus
+        - Mentions: 4310
+      - @tommcfly
+        - Mentions: 3837
+      - @ddlovato
+        - 3349
+      - @Jonasbrothers
+        - 1263
+      - @DavidArchie
+        - 1222
   
 - Who are the most active Twitter users (top ten)?
   - Path: http://localhost:3001/mostactive
@@ -168,10 +179,32 @@ The answers to the questions posed in the assignment can be found using the give
       - Count : 238
     - DarkPiano
       - Count : 236
+      
 - Who are the five most grumpy (most negative tweets) and the most happy (most positive tweets)? (Provide five users for each group) 
   - Path: 
     - Most Positive: http://localhost:3001/positivepolarity
+      - what_bugs_u
+        - Count : 246
+      - KevinEdwardsJr
+        - Count : 171
+      - whitsundays
+        - Count : 144
+      - longestpoem
+        - Count : 116
+      - tweeteradder7
+        - Count : 114
+        
     - Most Negative: http://localhost:3001/negativepolarity
+      - lost_dog
+        - Count : 549
+      - tweetpet
+        - Count : 310
+      - TheAmazingCat
+        - Count : 86
+      - nova937music
+        - Count : 67
+      - Nathan133
+        - Count : 51
 
 
 # Development Notes
