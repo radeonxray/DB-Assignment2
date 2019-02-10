@@ -143,7 +143,7 @@ The answers to the questions posed in the assignment can be found using the give
       - Mentions : 202
   
 - Who is are the most mentioned Twitter users? (Provide the top five.) **[Did not complete this part]**
-  - Path:**[Did not complete this part]**
+  - Path:http://localhost:3001/mostactive
   
 - Who are the most active Twitter users (top ten)?
   - Path: http://localhost:3001/mostactive
@@ -168,8 +168,10 @@ The answers to the questions posed in the assignment can be found using the give
       - Count : 238
     - DarkPiano
       - Count : 236
-- Who are the five most grumpy (most negative tweets) and the most happy (most positive tweets)? (Provide five users for each group) **[Did not complete this part]**
-  - Path: **[Did not complete this part]**
+- Who are the five most grumpy (most negative tweets) and the most happy (most positive tweets)? (Provide five users for each group) 
+  - Path: 
+    - Most Positive: http://localhost:3001/positivepolarity
+    - Most Negative: http://localhost:3001/negativepolarity
 
 
 # Development Notes
