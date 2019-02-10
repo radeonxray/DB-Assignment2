@@ -89,16 +89,23 @@ app.get('/mostlinks', function(req,res){
 
 
 //API for showing the top 10 most mentioned Twitter users
+//Need to locate and save the usernames 
+
 app.get('/mostmentioned', function(req,res){
 
-  post.aggregate([{'$group':{_id:text}}]).allowDiskUse(true).limit(10).exec(function(err, user){
-    if(err){
-      console.log(err)
-      res.status(500).send("Error!")
-    } else {
-      res.status(200).send(user);
-    }
-  })
+  post.aggregate([
+    {'$addFields': {'words':{'$split':['$text', ' ']}}},
+    {'$unwind':"$words"}, 
+    {'$match':{'words':{'$regex':/@\w+/,'$options':'m'}}}, 
+    {'$group':{'_id':"$words",'total':{'$sum':1}}},
+    {'$sort':{'total':-1}} 
+]).limit(5).allowDiskUse(true).exec(function(err,result){
+  if(err){
+    res.status(500).send("Error: " + err.name)
+  } else {
+    res.status(200).send(result);
+  }
+})
 
 })
 
@@ -159,61 +166,36 @@ app.get('/testQuery', function(req,res){
 
 //API Polarity
 //Show the five users with the most Grumpy tweets and the five users with the most positive tweets
-app.get('/polarity', (req,res) => {
-  pipeline = [ ]
+app.get('/negativepolarity', (req,res) => {
 
-post.aggregate(pipeline).allowDiskUse(true).limit(10).exec(function(err, user){
+  post.aggregate([
+    {'$group':{'_id':"$user", 'polarity': {'$avg': "$polarity"}, 'AmountOfNegativeTweets': {'$sum': 1}}},
+    {'$sort':{ 'polarity': 1, 'AmountOfNegativeTweets':-1}}
+]).limit(5).allowDiskUse(true).exec(function(err,result){
   if(err){
-    console.log(err)
-    res.status(500).send("Error!")
+    res.status(500).send("Error: " + err.name)
   } else {
-    res.status(200).send(user);
+    res.status(200).send(result);
   }
-}) 
-  /*
-  post.aggregate([{$group:{
-    _id:{
-      username:"$user",count:{$sum:1}}
-    }}
-  ,{$sort:{count:-1}}]).allowDiskUse(true).limit(10).exec(function(err, user){
-    if(err){
-      console.log(err)
-      res.status(500).send("Error!")
-    } else {
-      res.status(200).send(user);
-    }
-  }) 
-  */
-/*
-  post.aggregate([{$group:{_id:"$user",
-  polarity:
-  {$sum: {
-    $add:[
-      {"$ifNull":["$polarity",8]}]}}}},{$sort:{count:-1}}]).allowDiskUse(true).limit(10).exec(function(err, user){
-    if(err){
-      console.log(err)
-      res.status(500).send("Error!")
-    } else {
-      res.status(200).send(user);
-    }
-  })
-  */
+})
+})
 
-  /*
-  post.aggregate([{$project: {
-    polarityTotal: {$sum: "$polarity"}
-  }}, {$sort:{count:-1}}]).allowDiskUse(true).limit(10).exec(function(err, user){
-    if(err){
-      console.log(err)
-      res.status(500).send("Error!")
-    } else {
-      res.status(200).send(user);
-    }
-  })
-  */
+//API Polarity
+//Show the five users with the most Positive tweets and the five users with the most positive tweets
+app.get('/positivepolarity', (req,res) => {
 
-  
-  })
+  post.aggregate([
+    {'$group':{'_id':"$user", 'polarity': {'$avg': "$polarity"}, 'AmountOfHappyTweets': {'$sum': 1}}},
+    {'$sort':{ 'polarity': -1, 'AmountOfHappyTweets':-1}}
+]).limit(5).allowDiskUse(true).exec(function(err,result){
+  if(err){
+    res.status(500).send("Error: " + err.name)
+  } else {
+    res.status(200).send(result);
+  }
+})
+})
+
 
   //TEST POLARITY WITH AGGREGATE
   //Testing to see the range of the field "polarity"
